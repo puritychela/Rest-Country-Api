@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 
 export default function Header() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // On first load, check for user's theme preference (optional)
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
-    const initialDark = storedTheme === 'dark' || (!storedTheme && prefersDark);
+    const initialDark = storedTheme === 'dark' || storedTheme === null; // default to dark
     setIsDark(initialDark);
     document.documentElement.classList.toggle('dark', initialDark);
   }, []);
